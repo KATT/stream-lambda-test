@@ -22,7 +22,7 @@ export default async function handler(
     !!res?.flush
   );
   for (let i = 0; i < 1_000; i++) {
-    res.chunkedEncoding = true;
+    // res.chunkedEncoding = true;
     res.write(`data: ${i}\n\n`);
 
     // @ts-expect-error this exists locally at least
