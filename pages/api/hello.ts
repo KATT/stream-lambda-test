@@ -11,12 +11,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  res.writeHead(200, {
-    Connection: "keep-alive",
-    "Content-Encoding": "none",
-    "Cache-Control": "no-cache, no-transform",
-    "Content-Type": "text/event-stream",
-  });
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Content-Type", "text/event-stream;charset=utf-8");
+  res.setHeader("Cache-Control", "no-cache, no-transform");
+  res.setHeader("X-Accel-Buffering", "no");
 
   console.log(
     "flush exists?",
