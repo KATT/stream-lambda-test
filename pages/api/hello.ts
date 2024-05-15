@@ -26,7 +26,7 @@ export default async function handler(
     res.write(`data: ${i}\n\n`);
 
     // @ts-expect-error this exists locally at least
-    res?.flush();
+    res.flush?.();
 
     await waitMs(3);
   }
