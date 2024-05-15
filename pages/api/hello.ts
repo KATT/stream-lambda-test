@@ -11,10 +11,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  res.setHeader("Content-Type", "text/event-stream");
-  res.setHeader("Cache-Control", "no-cache");
-  res.setHeader("Connection", "keep-alive");
-  res.setHeader("Transfer-Encoding", "chunked");
+  res.writeHead(200, {
+    Connection: "keep-alive",
+    "Content-Encoding": "none",
+    "Cache-Control": "no-cache",
+    "Content-Type": "text/event-stream",
+  });
 
   console.log(
     "flush exists?",
@@ -22,7 +24,7 @@ export default async function handler(
     !!res?.flush
   );
   for (let i = 0; i < 1_000; i++) {
-    // res.chunkedEncoding = true;
+    // res.chunkedEncoding = true;>
     res.write(`data: ${i}\n\n`);
 
     // @ts-expect-error this exists locally at least
